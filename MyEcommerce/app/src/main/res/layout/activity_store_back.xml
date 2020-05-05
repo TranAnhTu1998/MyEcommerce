@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StoreBackActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/idAppBarLayoutStoreFront"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/id_toolbar_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
+            app:title="@string/title_activity_store_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/id_empty_products_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notification_not_data"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="22dp"/>
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:text="@string/name_product"/>
+
+                <EditText
+                    android:id="@+id/id_name_product_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:text="@string/price"/>
+
+                <EditText
+                    android:id="@+id/id_price_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="100"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:text="@string/quantity_goods_stock"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:id="@+id/id_quantity_goods_stock_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="100"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/id_button_add_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="Add a product"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/id_checkbox_delete"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Delete product by ID : "
+                    android:textColor="@color/orange" />
+
+                <EditText
+                    android:id="@+id/id_edittext_delete"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:ems="1"
+                    android:inputType="number"
+                    android:visibility="gone"
+                    android:layout_weight="1" />
+                <Button
+                    android:id="@+id/id_button_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete"
+                    android:visibility="gone"
+                    android:textColor="@color/orange"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/id_recyclerview_back"
+            android:layout_width="match_parent"
+            android:layout_height="350dp" />
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout >

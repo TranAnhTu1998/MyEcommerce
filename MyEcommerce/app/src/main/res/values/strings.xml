@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MyEcommerce</string>
+    <string name="store_front">Store front</string>
+    <string name="store_back">Store back</string>
+    <string name="name_product">Product is name : </string>
+    <string name="quantity_goods_stock">Quantity of goods in stock: </string>
+    <string name="price">Price</string>
+    <string name="number_order">Number of orders: </string>
+    <string name="notification_shop_closed">Sorry customers! My shop is temporarily closed.</string>
+    <string name="notification_not_data">No data !!!</string>>
+    <string name="title_activity_store_front">Store front </string>
+    <string name="title_activity_store_back">Store back </string>
+    <string name="add_a_product">Add a product</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
