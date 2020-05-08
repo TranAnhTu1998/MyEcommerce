@@ -2,6 +2,8 @@ package com.example.myecommerce;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.Principal;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -20,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ProductRecyclerAdapder extends RecyclerView.Adapter<ProductRecyclerAdapder.ProductViewHolder> {
     private List<Product> listProduct;
     private Context context;
-
+    private  static  int TIME_WAIT = 3000;
     public ProductRecyclerAdapder(Context context, List<Product> listProduct){
         this.context = context;
         this.listProduct = listProduct;
@@ -42,27 +45,44 @@ public class ProductRecyclerAdapder extends RecyclerView.Adapter<ProductRecycler
         holder.bntOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Editable edtabNumberOrder = edtNumberOder.getText();
-                if(edtabNumberOrder.toString().isEmpty()){
-                    showAlerDialogError("Number of orders  empty??.");
-                }else {
-                    int ID = listProduct.get(fPosition_).getId();
-                    int number_order = Integer.parseInt(edtabNumberOrder.toString());
-                    int number_products_warehouse = Integer.parseInt(ftvNumberInWareHose.getText().toString());
-                    int number_products_warehouse_update = number_products_warehouse - number_order;
-                    boolean boole = MainActivity.databaseHelper.updateHandler(ID, number_products_warehouse_update);
-                    if(number_products_warehouse_update < 0){
-                        //update;
-                        showAlerDialogError("You cannot place" + listProduct.get(fPosition_).getName() + "products beyond the specified quantity. !!");
-                    }else if(!boole){
-                        showAlerDialogError("Could not update data !!!");
-                    }else {
-                        ftvNumberInWareHose.setText(Integer.toString(number_products_warehouse_update));
-                        edtNumberOder.setText("");
-                        Toast.makeText(context,"Order Success!!", Toast.LENGTH_SHORT).show();
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        try {
+                            Thread.sleep(TIME_WAIT);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
                     }
-                }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        Editable edtabNumberOrder = edtNumberOder.getText();
+                        if(edtabNumberOrder.toString().isEmpty()){
+                            showAlerDialogError("Number of orders  empty??.");
+                        }else {
+                            int ID = listProduct.get(fPosition_).getId();
+                            int number_order = Integer.parseInt(edtabNumberOrder.toString());
+                            int number_products_warehouse = Integer.parseInt(ftvNumberInWareHose.getText().toString());
+                            int number_products_warehouse_update = number_products_warehouse - number_order;
+                            boolean boole = MainActivity.databaseHelper.updateHandler(ID, number_products_warehouse_update);
+                            if(number_products_warehouse_update < 0){
+                                //update;
+                                showAlerDialogError("You cannot place" + listProduct.get(fPosition_).getName() + "products beyond the specified quantity. !!");
+                            }else if(number_order == 0){
+                                showAlerDialogError("Order number cannot be less than zero !!!");
+                            } else if(!boole){
+                                showAlerDialogError("Could not update data !!!");
+                            }else {
+                                ftvNumberInWareHose.setText(Integer.toString(number_products_warehouse_update));
+                                edtNumberOder.setText("");
+                                Toast.makeText(context,"Order Success!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        super.onPostExecute(aVoid);
+                    }
+                }.execute();
             }
         });
         //holder.textViewTitle.setText("item " + String.format("%d", position));
